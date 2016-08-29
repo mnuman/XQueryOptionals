@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:hws="http://xmlns.syntouch.nl/HelloWorldService/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="HelloWorld" targetNamespace="http://xmlns.syntouch.nl/HelloWorldService/" xmlns:xsd1="http://xmlns.syntouch.nl/HelloWorld">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://xmlns.syntouch.nl/HelloWorldService/">
+      <xsd:element name="NewOperation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="NewOperationResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    	<xsd:import namespace="http://xmlns.syntouch.nl/HelloWorld"
+    		schemaLocation="../schemas/HelloWorld.xsd">
+    	</xsd:import></xsd:schema></wsdl:types>
+  <wsdl:message name="doCopyRequest">
+    <wsdl:part element="xsd1:HelloWorldRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="doCopyResponse">
+    <wsdl:part element="xsd1:HelloWorldResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="HelloWorld">
+    <wsdl:operation name="doCopy">
+      <wsdl:input message="hws:doCopyRequest"/>
+      <wsdl:output message="hws:doCopyResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWorldSOAP" type="hws:HelloWorld">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="doCopy">
+      <soap:operation soapAction="http://xmlns.syntouch.nl/HelloWorldService/doCopy"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWorld">
+    <wsdl:port binding="hws:HelloWorldSOAP" name="HelloWorldSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

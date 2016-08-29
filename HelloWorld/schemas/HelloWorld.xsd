@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://xmlns.syntouch.nl/HelloWorld" xmlns:tns="http://xmlns.syntouch.nl/HelloWorld" elementFormDefault="qualified">
+
+    <element name="HelloWorldRequest">
+    	<complexType>
+    		<sequence>
+    			<element name="FirstName" type="string"></element>
+    			<element name="LastNamePrefix" type="string" maxOccurs="1" minOccurs="0"></element>
+    			<element name="LastName" type="string"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+
+    <element name="HelloWorldResponse">
+    	<complexType>
+    		<sequence>
+    			<element name="Voornaam" type="string"></element>
+    			<element name="Tussenvoegsel" type="string" maxOccurs="1" minOccurs="0"></element>
+    			<element name="Achternaam" type="string"></element>
+    		</sequence>
+    	</complexType>
+    </element>
+</schema>
